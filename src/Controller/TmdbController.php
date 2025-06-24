@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 use Cake\Http\Client;
+use Cake\Core\Configure;
 
 /**
  * Tmdb Controller
@@ -10,15 +11,16 @@ use Cake\Http\Client;
  */
 class TmdbController extends AppController
 {
-    public function search()
+    public function index()
     {
         $results = [];
         // ?q=Tom
-        $query = trim($this->request->getQuery('q'));
+        $q = $this->request->getQuery('q');
         // check for query
-        if($query){
-            // get api key
-            $apiKey = env('TMDB_API_KEY');
+        if($q){
+            $query = trim($q);
+            // $apiKey = Configure::read('tmdb.api_key');
+            $apiKey = '439145a999940d0a57f54e223d0ab80a';
             if(!apiKey){
                 // check for api key
                 $this->Flash->error('TMDB API Key error');
@@ -27,7 +29,7 @@ class TmdbController extends AppController
                 $http = new Client(['timeout'=>10]);
                 try{
                     // GET request Http
-                    $http->get(
+                    $response = $http->get(
                         'https://api/themoviedb.org/3/search/person',
                         [
                             'api_key' => $apiKey,
@@ -47,7 +49,7 @@ class TmdbController extends AppController
                 }
             }
         }
-        $this->set(compact('results', 'query'));
+        $this->set(compact('results', 'q'));
     }
     
 }
