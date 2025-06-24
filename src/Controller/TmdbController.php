@@ -19,9 +19,8 @@ class TmdbController extends AppController
         // check for query
         if($q){
             $query = trim($q);
-            // $apiKey = Configure::read('tmdb.api_key');
-            $apiKey = '439145a999940d0a57f54e223d0ab80a';
-            if(!apiKey){
+            $apiKey = Configure::read('tmdb.api_key');
+            if(!$apiKey){
                 // check for api key
                 $this->Flash->error('TMDB API Key error');
             }else{
@@ -30,7 +29,7 @@ class TmdbController extends AppController
                 try{
                     // GET request Http
                     $response = $http->get(
-                        'https://api/themoviedb.org/3/search/person',
+                        'https://api.themoviedb.org/3/search/person',
                         [
                             'api_key' => $apiKey,
                             'query' => $query

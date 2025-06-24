@@ -11,7 +11,7 @@
 <?= $this->Form->end() ?>
 
 <?php if ($results !== []): ?>
-  <h2>Results for <?= h($query)?></h2>
+  <h2>Results for <?= h($query ?? '')?></h2>
   <!-- List of people in TMDb -->
   <ul>
       <?php foreach ($results as $person): ?>
