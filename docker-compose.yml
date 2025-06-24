@@ -9,8 +9,6 @@ services:
       - .:/var/www/html
     depends_on:
       - mysql
-    environment:
-      - TMDB_API_KEY=439145a999940d0a57f54e223d0ab80a
 
   mysql:
     image: mysql:8.0
