@@ -17,6 +17,12 @@ class ActorsController extends AppController
      */
     public function index()
     {
+        // echo("actors...");
+        // exit;
+        ////////////////////////
+        ///////////////////////
+        ////////////////////////
+        ///////////////////////
         $filter = $this->request->getQuery('filter'); // get from the url: /actors?filter=tom
 
         // Query: fetch related movies for each actor and sort
